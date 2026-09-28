@@ -1,50 +1,52 @@
-# Akiba-ai
+# Akiba AI
 
-Akiba AI is a Kenyan AI-powered financial education and investment-planning platform for young Kenyans and first-time investors.
+Akiba AI is a mobile-first financial education and personal planning app for people in Kenya. It helps people organise savings goals and learn at their own pace. It is not a bank, broker, payment service, or personalised investment adviser. It does not move money or execute investments.
 
-It helps people understand money, set saving goals, and plan with a simple, mobile-first experience. It is an educational and planning tool, not a bank, broker, exchange, or personal investment adviser.
+## Requirements
 
-## What Akiba AI does
+- Node.js 20.9 or later
+- npm
+- A Supabase project for accounts and private, persistent planning data
 
-- helps users create and track personal savings goals
-- promotes financial literacy and practical planning habits
-- keeps user plans private and stored in Supabase
-- provides a clean Next.js product foundation for future AI-powered coaching and recommendations
+## Run locally
 
-## Project status
+1. Install dependencies:
 
-This project is a working Next.js + Supabase foundation for an educational financial planning product.
+   ```bash
+   npm install
+   ```
 
-## Tech stack
+2. Copy `.env.example` to `.env.local` and set the project URL and publishable key from your Supabase project. Do not use a service-role key in this app or expose one in a `NEXT_PUBLIC_` variable.
 
-- Next.js
-- TypeScript
-- React
-- Supabase
-- Tailwind CSS
+3. Apply the database migration to the Supabase project using the Supabase CLI:
 
-## Local development
+   ```bash
+   supabase link --project-ref your-project-id
+   supabase db push
+   ```
+
+   The migration creates profiles, goals, manually recorded goal contributions, an account profile trigger, and owner-only Row Level Security policies.
+
+4. In Supabase Authentication settings, set the site URL to your local app origin (normally `http://localhost:3000`) and add the local origin to the allowed redirect URLs.
+
+5. Start the app:
+
+   ```bash
+   npm run dev
+   ```
+
+Visit [http://localhost:3000](http://localhost:3000). The login page supports email/password sign-in and account creation. If email confirmation is enabled, new accounts must confirm their email before signing in.
+
+## Dashboard modes
+
+- In development, when Supabase is not configured, the dashboard shows a clearly labelled illustrative sample preview. Its figures are not real user balances or financial advice.
+- In a production build without Supabase configuration, the app shows setup instructions rather than sample or fabricated personal data.
+- With Supabase configured, users must sign in to see their own profile, goals, and manually noted goal contributions. Row Level Security enforces ownership at the database boundary.
+
+## Validation
 
 ```bash
-npm install
-cp .env.example .env.local
-npm run dev
+npm run lint
+npx tsc --noEmit
+npm run build
 ```
-
-Then open http://localhost:3000.
-
-## Environment variables
-
-Copy the example values into a local `.env.local` file and replace them with your real project values:
-
-```bash
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-```
-
-Do not commit real secrets or service-role keys.
-
-## License
-
-MIT
-
