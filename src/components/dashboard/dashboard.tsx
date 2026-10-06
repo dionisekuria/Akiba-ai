@@ -23,6 +23,7 @@ import {
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { signOut } from "@/app/actions/auth";
+import { AddGoalForm } from "@/components/dashboard/add-goal-form";
 import type { DashboardData, GoalSnapshot } from "@/lib/dashboard-data";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -557,6 +558,8 @@ export function Dashboard(props: DashboardProps) {
                     </a>
                   )}
                 </div>
+
+                {!isDemo && <div className="mb-5"><AddGoalForm /></div>}
 
                 {goals.length > 0 ? (
                   <div className="grid gap-4 sm:grid-cols-2">
