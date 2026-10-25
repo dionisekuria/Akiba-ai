@@ -26,7 +26,10 @@ export default async function EditGoalPage({
     redirect("/login");
   }
 
-  const goal = await getGoalById(supabase, claimsData.claims.sub, goalId);
+  const goal = await getGoalById(supabase, {
+    userId: claimsData.claims.sub,
+    goalId,
+  });
 
   if (!goal) {
     redirect("/goals");

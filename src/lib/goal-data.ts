@@ -77,8 +77,7 @@ export async function getGoalsForUser(
 
 export async function getGoalById(
   supabase: SupabaseServerClient,
-  userId: string,
-  goalId: string,
+  { userId, goalId }: { userId: string; goalId: string },
 ): Promise<GoalRecord | null> {
   const { data: goal, error: goalError } = await supabase
     .from("goals")

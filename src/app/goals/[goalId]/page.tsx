@@ -23,7 +23,10 @@ export default async function GoalDetailPage({ params }: { params: Promise<{ goa
     redirect("/login");
   }
 
-  const goal = await getGoalById(supabase, goalId, claimsData.claims.sub);
+  const goal = await getGoalById(supabase, {
+    userId: claimsData.claims.sub,
+    goalId,
+  });
 
   if (!goal) {
     redirect("/goals");
