@@ -15,7 +15,7 @@ export function AddGoalForm() {
   );
 
   return (
-    <div className="rounded-2xl border border-border/70 bg-card p-4 shadow-[0_2px_12px_rgba(31,55,42,0.025)]">
+    <div className="rounded-[1.5rem] border border-border/70 bg-white p-5 shadow-[0_10px_30px_rgba(70,38,21,0.05)]">
       <div className="flex items-center justify-between gap-3">
         <div>
           <p className="text-xs font-semibold tracking-[0.12em] text-muted-foreground uppercase">
@@ -26,7 +26,7 @@ export function AddGoalForm() {
           </h3>
         </div>
         <Button
-          className="h-9 gap-1.5 rounded-xl"
+          className="h-10 gap-1.5 rounded-full px-4"
           onClick={() => setIsOpen((current) => !current)}
           type="button"
           variant="outline"
@@ -57,7 +57,7 @@ export function AddGoalForm() {
               Goal name
             </label>
             <input
-              className="min-h-11 w-full rounded-xl border border-input bg-background px-3 text-sm outline-none transition-shadow placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring/20"
+              className="min-h-12 w-full rounded-2xl border border-input bg-background px-4 text-sm outline-none transition-shadow placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring/30"
               id="goal-name"
               maxLength={120}
               name="name"
@@ -71,7 +71,7 @@ export function AddGoalForm() {
               Category
             </label>
             <input
-              className="min-h-11 w-full rounded-xl border border-input bg-background px-3 text-sm outline-none transition-shadow placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring/20"
+              className="min-h-12 w-full rounded-2xl border border-input bg-background px-4 text-sm outline-none transition-shadow placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring/30"
               id="goal-category"
               maxLength={80}
               name="category"
@@ -89,7 +89,7 @@ export function AddGoalForm() {
                 Target amount
               </label>
               <input
-                className="min-h-11 w-full rounded-xl border border-input bg-background px-3 text-sm outline-none transition-shadow placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring/20"
+                className="min-h-12 w-full rounded-2xl border border-input bg-background px-4 text-sm outline-none transition-shadow placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring/30"
                 id="goal-targetAmount"
                 min="0.01"
                 name="targetAmount"
@@ -108,7 +108,7 @@ export function AddGoalForm() {
                 Target date
               </label>
               <input
-                className="min-h-11 w-full rounded-xl border border-input bg-background px-3 text-sm outline-none transition-shadow placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring/20"
+                className="min-h-12 w-full rounded-2xl border border-input bg-background px-4 text-sm outline-none transition-shadow placeholder:text-muted-foreground/70 focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring/30"
                 id="goal-targetDate"
                 name="targetDate"
                 type="date"
@@ -117,7 +117,7 @@ export function AddGoalForm() {
           </div>
 
           <Button
-            className="w-full rounded-xl"
+            className="h-12 w-full rounded-full"
             disabled={isPending}
             type="submit"
           >

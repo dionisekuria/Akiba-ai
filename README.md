@@ -27,7 +27,18 @@ Akiba AI is a mobile-first financial education and personal planning app for peo
 
    The migration creates profiles, goals, manually recorded goal contributions, an account profile trigger, and owner-only Row Level Security policies.
 
-4. In Supabase Authentication settings, set the site URL to your local app origin (normally `http://localhost:3000`) and add the local origin to the allowed redirect URLs.
+4. Configure Supabase Authentication URL settings:
+   - Keep one Site URL, preferably the production app origin (for example, `https://<production-host>`).
+   - Add each environment's callback URL under Redirect URLs: `http://localhost:3000/auth/confirm`, `https://<preview-host>/auth/confirm`, and `https://<production-host>/auth/confirm`. Replace the placeholders with the actual origins you use.
+   - Under Authentication → Providers → Email, enable Email authentication and keep email confirmation enabled.
+
+   Sign-up requests send confirmation links to the current app's `/auth/confirm` route. Supabase's built-in confirmation template returns a PKCE code, so that link must be opened in the same browser where sign-up began. If you later configure a verified sending domain and custom SMTP, you can optionally update the Confirm signup template to use the token-hash flow:
+
+   ```text
+   {{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=email&next=/
+   ```
+
+   Do not repeatedly resend links while waiting for delivery; the built-in sender may be delayed or rate-limited. Use an internal or staging account when testing, and click only the newest confirmation link.
 
 5. Start the app:
 
@@ -36,6 +47,18 @@ Akiba AI is a mobile-first financial education and personal planning app for peo
    ```
 
 Visit [http://localhost:3000](http://localhost:3000). The login page supports email/password sign-in and account creation. If email confirmation is enabled, new accounts must confirm their email before signing in.
+
+### Authentication verification checklist
+
+For a controlled end-to-end check, use a fresh account in a non-production Supabase project and one allowed app origin:
+
+1. While signed out, open `/` and confirm it sends you to `/login`.
+2. Create an account with an email address you control, then wait for the email and open the newest confirmation link in the same browser.
+3. Confirm the callback returns to the dashboard with an active session. Sign out and sign in again with the password.
+4. Create a goal, open its detail page, add a manually recorded contribution, and verify the amount and progress remain after signing out and back in.
+5. Reuse an already-clicked confirmation link and confirm the app returns to `/login` with a safe notice.
+
+Never share passwords, access tokens, service-role keys, or `.env.local` values when reporting a test problem.
 
 ## Dashboard modes
 

@@ -29,7 +29,7 @@ export function GoalEditForm({
       {state.message ? (
         <p
           aria-live="polite"
-          className={`rounded-xl px-3 py-2 text-sm leading-5 ${
+          className={`rounded-2xl px-4 py-3 text-sm leading-5 ${
             state.status === "error"
               ? "bg-destructive/10 text-destructive"
               : "bg-secondary text-primary"
@@ -46,7 +46,7 @@ export function GoalEditForm({
           id="name"
           name="name"
           defaultValue={initialValues.name}
-          className="min-h-11 w-full rounded-xl border border-input bg-background px-3 text-sm"
+          className="min-h-12 w-full rounded-2xl border border-input bg-white px-4 text-sm outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring/30"
           required
         />
       </div>
@@ -57,7 +57,7 @@ export function GoalEditForm({
           id="category"
           name="category"
           defaultValue={initialValues.category}
-          className="min-h-11 w-full rounded-xl border border-input bg-background px-3 text-sm"
+          className="min-h-12 w-full rounded-2xl border border-input bg-white px-4 text-sm outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring/30"
           required
         />
       </div>
@@ -72,7 +72,7 @@ export function GoalEditForm({
             min="0.01"
             step="0.01"
             defaultValue={initialValues.targetAmount}
-            className="min-h-11 w-full rounded-xl border border-input bg-background px-3 text-sm"
+            className="min-h-12 w-full rounded-2xl border border-input bg-white px-4 text-sm outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring/30"
             required
           />
         </div>
@@ -84,12 +84,12 @@ export function GoalEditForm({
             name="targetDate"
             type="date"
             defaultValue={initialValues.targetDate ?? ""}
-            className="min-h-11 w-full rounded-xl border border-input bg-background px-3 text-sm"
+            className="min-h-12 w-full rounded-2xl border border-input bg-white px-4 text-sm outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-ring/30"
           />
         </div>
       </div>
 
-      <Button className="w-full rounded-xl" disabled={isPending} type="submit">
+      <Button className="h-12 w-full rounded-full" disabled={isPending} type="submit">
         {isPending ? "Saving..." : "Save changes"}
       </Button>
     </form>
